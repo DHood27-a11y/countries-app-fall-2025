@@ -1,1 +1,5 @@
-export default CountryDetails;
+function CountryDetail() {
+  return <></>;
+}
+
+export default CountryDetail;
