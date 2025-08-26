@@ -6,13 +6,14 @@ function Home({ countriesData }) {
       <div className="home">
         <h1>Countries</h1>
         <div className="countries-list">
-          {countriesData.map((country) => (
+          {countriesData.map((country, index) => (
             <CountryCard
-              key={country.id}
-              name={country.name}
+              key={index}
+              name={country.name.common}
               region={country.region}
               population={country.population}
-              flag={country.flag}
+              capital={country.capital}
+              flag={country.flags.png}
             />
           ))}
         </div>
