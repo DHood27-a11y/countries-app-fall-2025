@@ -5,6 +5,12 @@ import CountryDetail from "./pages/CountryDetail";
 import localData from "../localData";
 import "./App.css";
 
+//Here I created a header section that will consist of nav bar links
+//The first link will be to the home page and the second link to the saved countries page
+//The Routes embed just defines clear path for each route
+// "/" renders the Home component and passes in the countries data from our localData.js file
+//"/saved" renders the SavedCountries component
+//"/country" renders the CountryDetail component
 function App() {
   return (
     <>
