@@ -10,6 +10,14 @@ import CountryCard from "../components/CountryCard";
 //Questions I had:
 //When it comes to the key Im not sure I even need it in this case given the structure of the figma design but want to make sure... -ANSWERED BY TA  (she stated that it should be something that each object has in common but helps tell them apart given it should be unique to each)
 // some countries have multiple capitals or none so Im trying to see if I can use my if else within the .map or if there is a way to do it within the embed.... -ANSWERED BY TA
+
+//usually starts with data in which you can then run a method or function
+//you can chain and or nest methods together using dot notation
+//thought process: want to take my data (countriesData) and sort through it and in return get objects in alphabetical order
+
+//Psuedocode portion:
+countriesData.sort;
+
 function Home({ countriesData }) {
   return (
     <>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 //created a function called CountryCard and gave it the following props based on data object provided: name, region, population, capital, and flag
 //I gave a class name of country-card for styling/structural purposes
 //I created an image tag that receives the props "name" and "flag"
@@ -8,7 +10,7 @@
 
 function CountryCard({ name, region, population, capital, flag }) {
   return (
-    <>
+    <Link to={`/country/${name}`}>
       <div className="country-card">
         <img src={flag} alt={name} className="country-flag" />
         <h2 className="country-name">{name}</h2>
@@ -18,7 +20,7 @@ function CountryCard({ name, region, population, capital, flag }) {
           Capital: {capital && capital.length > 0 ? capital[0] : "N/A"}
         </p>
       </div>
-    </>
+    </Link>
   );
 }
 
