@@ -21,18 +21,24 @@ nav ul li a {
 
 .countries-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-  gap: 1rem; /* space between cards */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
   padding: 2rem;
 }
 
 .country-card {
   border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1rem;
+  border-radius: 10px 10px 0px 0px;
+  width: 250px;
+  overflow: hidden;
+  padding: 0;
   background-color: white;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.country-link {
+  text-decoration: none;
+  color: black;
 }
 
 .country-flag {
