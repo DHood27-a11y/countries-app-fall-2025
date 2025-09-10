@@ -15,16 +15,17 @@ import CountryCard from "../components/CountryCard";
 //you can chain and or nest methods together using dot notation
 //thought process: want to take my data (countriesData) and sort through it and in return get objects in alphabetical order
 
-//Psuedocode portion:
-countriesData.sort;
-
 function Home({ countriesData }) {
+  const alpahbeticalCountries = [...countriesData].sort((a, b) =>
+    a.name.common.localeCompare(b.name.common)
+  );
+
   return (
     <>
       <div className="home">
         <h1>Countries</h1>
         <div className="countries-list">
-          {countriesData.map((country) => (
+          {alpahbeticalCountries.map((country) => (
             <CountryCard
               key={country.cca3}
               name={country.name.common}
