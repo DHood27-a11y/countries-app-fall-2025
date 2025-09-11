@@ -43,32 +43,33 @@ function App() {
   //"/saved" renders the SavedCountries component and also passes in countriesData prop so that SavedCountries component can access the same data
   //"/country/:countryName" renders the CountryDetail component by using dynamic route or :countryName which helps target each indiviual country data when a country card is clicked
   //This also takes countriesData as a prop to find and display the selected countries info */}
-
-      <header>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/" className="bold-link">
-                Where in the world?
-              </Link>
-            </li>
-            <li>
-              <Link to="/saved">Saved Countries</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <Routes>
-        <Route path="/" element={<Home countriesData={countries} />} />
-        <Route
-          path="/saved"
-          element={<SavedCountries countriesData={countries} />}
-        />
-        <Route
-          path="/country/:countryName"
-          element={<CountryDetail countriesData={countries} />}
-        />
-      </Routes>
+      <Router>
+        <header>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/" className="bold-link">
+                  Where in the world?
+                </Link>
+              </li>
+              <li>
+                <Link to="/saved">Saved Countries</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        <Routes>
+          <Route path="/" element={<Home countriesData={countries} />} />
+          <Route
+            path="/saved"
+            element={<SavedCountries countriesData={countries} />}
+          />
+          <Route
+            path="/country/:countryName"
+            element={<CountryDetail countriesData={countries} />}
+          />
+        </Routes>
+      </Router>
     </>
   );
 }
