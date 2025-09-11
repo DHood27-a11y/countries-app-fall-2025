@@ -5,7 +5,7 @@ import CountryDetail from "./pages/CountryDetail";
 import "./App.css";
 import { useState, useEffect } from "react";
 
-// declared a function called app and created a useState variable called Countries with setter function  to store countries from API provided and that will be stored inside the empty array that I set as the value of the inital state
+//declared a function called app and created a useState variable called Countries with setter function  to store countries from API provided and that will be stored inside the empty array that I set as the value of the inital state
 //declared a function called getCountries and used fetch to gather API info from URL provided, .then waits for the fetch to finish first and then gets the response or response.json
 //response.json turns the reponse into something that JS can actually read (an object in this case)
 //the next .then is connected to the data from the API and that data holds the array of all the countries from the data object that was converted
@@ -14,14 +14,6 @@ import { useState, useEffect } from "react";
 
 //useEffect just makes sure the component runs at a specific time (Had to google this and paraphrase) in this case it will run AFTER the page renders
 //for this api call I want my getCountries function to run when the page first loads and then we want it to only run ONCE which is why we use an empty array (otherwise known as the "dependency array")
-
-//Here I created a header section that will consist of nav bar links
-//The first link will be to the home page and the second link to the saved countries page
-//The Routes embed just defines clear path for each route
-// "/" renders the Home component and passes in the countries data as a prop to render list of countries
-//"/saved" renders the SavedCountries component and also passes in countriesData prop so that SavedCountries component can access the same data
-//"/country/:countryName" renders the CountryDetail component by using dynamic route or :countryName which helps target each indiviual country data when a country card is clicked
-//This also takes countriesData as a prop to find and display the selected countries info
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -42,6 +34,14 @@ function App() {
   useEffect(() => {
     getCountries();
   }, []);
+
+  //Here I created a header section that will consist of nav bar links
+  //The first link will be to the home page and the second link to the saved countries page
+  //The Routes embed just defines clear path for each route
+  // "/" renders the Home component and passes in the countries data as a prop to render list of countries
+  //"/saved" renders the SavedCountries component and also passes in countriesData prop so that SavedCountries component can access the same data
+  //"/country/:countryName" renders the CountryDetail component by using dynamic route or :countryName which helps target each indiviual country data when a country card is clicked
+  //This also takes countriesData as a prop to find and display the selected countries info
 
   return (
     <>
