@@ -5,8 +5,8 @@ import CountryDetail from "./pages/CountryDetail";
 import "./App.css";
 import { useState, useEffect } from "react";
 
-//created a useState variable called Countries with setter function  to store countries from API provided and that will be stored inside the empty array that I set as the value of the inital state
-//then I created function called getCountries and used fetch to gather API info from URL provided, .then waits for the fetch to finish first and then gets the response or response.json
+// declared a function called app and created a useState variable called Countries with setter function  to store countries from API provided and that will be stored inside the empty array that I set as the value of the inital state
+//declared a function called getCountries and used fetch to gather API info from URL provided, .then waits for the fetch to finish first and then gets the response or response.json
 //response.json turns the reponse into something that JS can actually read (an object in this case)
 //the next .then is connected to the data from the API and that data holds the array of all the countries from the data object that was converted
 //then the data is saved within my setter function or setCountries
