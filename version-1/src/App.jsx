@@ -44,8 +44,6 @@ function App() {
 
   return (
     <>
-      <h1>Countries App</h1>
-
       <header>
         <nav>
           <ul>

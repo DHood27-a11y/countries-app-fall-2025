@@ -5,16 +5,9 @@ import CountryCard from "../components/CountryCard";
 //looped through countriesData array using .map and gave it a parameter of country then I embedded CountryCard component so that I can render it on Home page and gave it attributes according to data object and each attribute gets a value of a prop based on the attribute name and what should be displayed in each card
 //chose country.cca3 given the country code is UNIQUE to each country but included in each object, country.name.common given there are two different key values within the name object in data object, country.region accesses region from data object, country.population acceses population from data object, country.capital accesses capital from data object, and country.flags.png accesses flag and within flag I accessed png to pull actual image
 //used the following source to help with alphabetizing countries https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/
-//so I created a function for putting the countries in alpahbetical order and included the array from the data object or "countriesData" given thats what holds the info needed then I used .sort which will rearrange the items in the array in order
-
-//Questions I had:
-//When it comes to the key Im not sure I even need it in this case given the structure of the figma design but want to make sure... -ANSWERED BY TA  (she stated that it should be something that each object has in common but helps tell them apart given it should be unique to each)
-// some countries have multiple capitals or none so Im trying to see if I can use my if else within the .map or if there is a way to do it within the embed.... -ANSWERED BY TA
-
-//usually starts with data in which you can then run a method or function
-//you can chain and or nest methods together using dot notation
-//thought process: want to take my data (countriesData) and sort through it and in return get objects in alphabetical order
-
+//so I created a function for putting the countries in alpahbetical order (alphabeticalCountries) and then included the array from the data object or "countriesData" given thats what holds the info needed, then I used .sort which will rearrange the items in the array in order
+//.sort(a,b) = goes through the array two items at a time (a and b) or (Afghanistan and Aland Islands then Aland Islands and Albania and so on and so forth) and it compares the item so that they can then be rearranged or "sorted" in alphabetical order
+//a.name.common.localeCompare(b.name.common) = targets the name.common property of each object in the array and the purpose of localeCompare(got definition from MDN docs) is to "returns a number indicating whether this string comes before, or after, or is the same as the given string in sort order" so in this case its establishing the order of things or countries
 function Home({ countriesData }) {
   const alpahbeticalCountries = [...countriesData].sort((a, b) =>
     a.name.common.localeCompare(b.name.common)
@@ -23,7 +16,6 @@ function Home({ countriesData }) {
   return (
     <>
       <div className="home">
-        <h1>Countries</h1>
         <div className="countries-list">
           {alpahbeticalCountries.map((country) => (
             <CountryCard
