@@ -92,3 +92,12 @@ nav ul li a {
   padding: 0.75rem;
   border-radius: 4px;
 }
+
+@media (max-width: 750px) {
+  .countries-list {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+    justify-items: center;
+  }
+}
