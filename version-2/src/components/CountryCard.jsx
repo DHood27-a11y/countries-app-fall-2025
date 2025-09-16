@@ -1,7 +1,31 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function CountryCard({ name, region, population, capital, flag }) {
   //created a function called CountryCard and gave it the following props based on data object provided: name, region, population, capital, and flag
+
+  //created a useState to track how many times a country has been viewed and set initial state to 0 since we will be going up by 1 each time
+  const [viewCount, setViewCount] = useState(0);
+
+//I want this function to run once when the card is rendered 
+useEffect(() => {
+  //will be getting the view counts from localStorage and if it doesnt exist we will start with an empty object. JSON.parse will convert string back into original data type
+  const savedViews = JSON.parse(localStorage.getItem("countryViews")) || {};
+
+  //I want to make sure the count for each country is current and default it to 0
+  const count = savedViews[name] || 0;
+
+  // I want to make the count increase by one which will ultimately update the state
+  setViewCount(count + 1);
+
+  //Created a new object that will have updated count for selected country
+  const updatedViews = {...savedViews, [name]: count + 1};
+
+  //now I want to save my updated view count to the localStorafe by using .setItem and .stringify method
+  localStorage.setItem("countryViews", JSON.stringify(updatedViews));
+
+}
+
 
   return (
     //I embedded my Link and set the value of my prop to my dynamic URL so that when the card is clicked it accesses the country info and goes to Country Details page

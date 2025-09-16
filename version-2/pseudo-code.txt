@@ -53,29 +53,37 @@ Add more steps as needed!
 :bar_chart: SAVED COUNTRIES DATA
 ------------------------
 WHAT data should we store & retrieve?
-KEY: "_______"
-VALUE: _______
-VALUE DATA TYPE: _______
-EXAMPLE VALUE: _______
+KEY: "_savedCountries______"
+VALUE: _saved countries_____
+VALUE DATA TYPE: _array of objects____
+EXAMPLE VALUE: _{
+   name: "Canada"
+   region: "Americas"
+   population: 38000000
+   capital: "Ottawa"
+   flag: "https://flagcdn.com/ca.svg"
+}______
 ------------------------
 :large_orange_diamond: STORING SAVED COUNTRIES DATA
 ------------------------
-WHEN: _______
-WHERE: _______
+WHEN: _when the user clicks the save button___
+WHERE: __in localStorage_____
 HOW:
-Step 1: _______
-Step 2: _______
-Step 3: _______
+Step 1: Get current saved countries from localStorage using .getItem_______
+Step 2: _Parse it back into an array using .parse method and if nothing exists start with empty array______
+Step 3: _Check if country is in array______
+Step 4: Convert updated array back to string using .stringify__and then save to localStorage using .setItem method_______________________________
 Add more steps as needed!
 ------------------------
 :large_orange_diamond: RETRIEVING SAVED COUNTRIES DATA
 ------------------------
-WHEN: _______
-WHERE: _______
+WHEN: when the saved countries page loads_______
+WHERE: _Inside the useEffect______
 HOW:
-Step 1: _______
-Step 2: _______
-Step 3: _______
+Step 1: Call localStorage.getItem("savedCountries")_______
+Step 2: If it exists use .parse method to turn it back into an array_using .parse method______
+Step 3: _Updated teh savedCountries state using setter function______
+Step 4: _need to map through countries _________________________
 Add more steps as needed!
 ------------------------
 :bar_chart: COUNTRY COUNTS DATA
