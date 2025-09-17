@@ -46,7 +46,9 @@ function CountryDetail({ countriesData }) {
           />
           <div className="country-info">
             <h1 className="country-name">{country.name.common}</h1>
-            <button className="save-button">Save</button>
+            <button className="save-button" onClick={handleSave}>
+              Save
+            </button>
             <p>
               <strong>Population:</strong> {country.population.toLocaleString()}
             </p>
