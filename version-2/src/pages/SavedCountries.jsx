@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CountryCard from "../components/CountryCard";
 
 function SavedCountries() {
   //Here I created my function for Saved countries page and created and empty form state (all fields will be blank until user types)
@@ -35,6 +36,7 @@ function SavedCountries() {
     console.log("data:", formData);
 
     //Saving form data into localStorage and stringify the data object
+
     localStorage.setItem("profile", JSON.stringify(formData));
 
     //then updating the userInfo state with formData so that the welcome message will show
@@ -46,21 +48,22 @@ function SavedCountries() {
 
   //I want my useEffect run once when the page loads so I will give it an empty dependency array
   useEffect(() => {
-    //this if statement says if the profile exists from localStorage show it
-    if (localStorage.getItem("profile")) {
-      //then we want to turn the string back into an object by using .parse method
-      let profileData = JSON.parse(localStorage.getItem("profile"));
-      //we want to put the data from the profile into our useState so it shows the welcome message
-      setUserInfo(profileData);
-    }
-    //this if statement says if saved countries list exists from localStorage then show it
-    if (localStorage.getItem("savedCountries")) {
-      //again we want to turn the string back into an object by using the .parse method
-      const countries = JSON.parse(
-        //then I want to put my array into my savedCountries useState so I can map through it
-        localStorage.getItem("savedCountries")
-      );
-      setSavedCountries(countries);
+    //gets the saved countries from localStorage
+    const saved = localStorage.getItem("savedCountries");
+    //Parses string into array
+    if (saved) {
+      const countries = JSON.parse(saved);
+
+      //this was created so that the savedcountry objects match the CountryCard given when I first tried to embed it rendered no info inside the cards nor an image.
+      const countryList = countries.map((country) => ({
+        flag: country.flag?.png || "",
+        name: country.name?.common || "N/A",
+        capital: country.capital?.[0] || "N/A",
+        population: country.population || 0,
+        region: country.region || "N/A",
+      }));
+      //this saves the new array into the useState so it can be displayed
+      setSavedCountries(countryList);
     }
   }, []);
 
@@ -111,14 +114,15 @@ function SavedCountries() {
       </div>
 
       <div className="country-list">
-        {/* I want to check if countries exist so that when they are saved they will show so I will be using .map method as well as looping then I want to render the saved country/countries to the page */}
-        {savedCountries.map((country, index) => {
-          <div key={index} className="saved-country">
-            <h3>{country.name}</h3>
-            <p>Region: {country.region}</p>
-            <p>Population: {country.population}</p>
-          </div>;
-        })}
+        {/* I imported Country card given I want to reuse the same card design/component that I made for the Home page.
+        This way my saved countries will display using the same layout.  */}
+
+        {/* This will show a message if no countries are saved */}
+        {savedCountries.length === 0 && <p>No countries saved. </p>}
+        {/* Mapped over savedCountries array and embedded Country card */}
+        {savedCountries.map((country, index) => (
+          <CountryCard key={index} country={country} />
+        ))}
       </div>
     </>
   );

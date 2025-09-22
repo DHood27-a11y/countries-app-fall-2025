@@ -55,35 +55,30 @@ Add more steps as needed!
 WHAT data should we store & retrieve?
 KEY: "_savedCountries______"
 VALUE: _saved countries_____
-VALUE DATA TYPE: _array of objects____
-EXAMPLE VALUE: _{
-   name: "Canada"
-   region: "Americas"
-   population: 38000000
-   capital: "Ottawa"
-   flag: "https://flagcdn.com/ca.svg"
-}______
+VALUE DATA TYPE: _an array of strings__
+EXAMPLE VALUE: _
+   [Afghanistan, India, China]___
 ------------------------
 :large_orange_diamond: STORING SAVED COUNTRIES DATA
 ------------------------
 WHEN: _when the user clicks the save button___
-WHERE: __in localStorage_____
+WHERE: __on the countryDetail page____
 HOW:
-Step 1: Get current saved countries from localStorage using .getItem_______
-Step 2: _Parse it back into an array using .parse method and if nothing exists start with empty array______
-Step 3: _Check if country is in array______
-Step 4: Convert updated array back to string using .stringify__and then save to localStorage using .setItem method_______________________________
+Step 1: _need to attach and onClick handler to save button________
+Step 2: when the user clicks save button, will call the handleClick function
+Step 3: _Handleclick function needs to save the country's name in localStorage____
+Step 4: Thhe handleClick function will first get the array of saved countries from local storage. If the country is already saved, then there is no need to save the country. If the country is not saved yet, then _add the country's name to the array of savedCountries and store that value in localStorage___________________
 Add more steps as needed!
 ------------------------
 :large_orange_diamond: RETRIEVING SAVED COUNTRIES DATA
 ------------------------
 WHEN: when the saved countries page loads_______
-WHERE: _Inside the useEffect______
+WHERE: _On the saved countries page in the saved countries section___
 HOW:
 Step 1: Call localStorage.getItem("savedCountries")_______
 Step 2: If it exists use .parse method to turn it back into an array_using .parse method______
-Step 3: _Updated teh savedCountries state using setter function______
-Step 4: _need to map through countries _________________________
+Step 3: _Updated the savedCountries state using setter function______
+Step 4: _need to map through countries and then render to screen using countryCard component _________________________
 Add more steps as needed!
 ------------------------
 :bar_chart: COUNTRY COUNTS DATA

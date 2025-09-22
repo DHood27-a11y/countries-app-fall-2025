@@ -21,6 +21,7 @@ function App() {
     )
       .then((response) => response.json())
       .then((data) => {
+        console.log(data, "data from API");
         setCountries(data);
       })
       .catch((error) => {

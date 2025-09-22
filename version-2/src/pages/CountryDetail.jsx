@@ -16,10 +16,45 @@ function CountryDetail({ countriesData }) {
   //this function uses the .find method to find the first country that matches
   const country = countriesData.find(selectedCountry);
 
-  if (!country) {
-    return <p>Country not found</p>;
-    //the ternary statement just says if no country was found because the name didnt match show the following message, otherwise just show the country's detail page
-  }
+  if (!country) return <p>Country not found</p>;
+  //the ternary statement just says if no country was found because the name didnt match show the following message, otherwise just show the country's detail page
+
+  //this function will save the country to localStorage when user clicks the save button
+  const handleSave = () => {
+    let savedCountries;
+
+    try {
+      //this function will get savedCountries from localStorage and convert string to array using .parse method and if nothing is there then it will be an empty array
+      savedCountries = JSON.parse(localStorage.getItem("savedCountries")) || [];
+    } catch {
+      savedCountries = [];
+    }
+
+    //this will track if a country is saved already or not
+    let alreadySaved = false;
+
+    //Looping through each saved country to check for duplicates
+    for (let i = 0; i < savedCountries.length; i++) {
+      //check if the current saved country matches the country the user wanted saved
+      if (savedCountries[i].name.common === country.name.common) {
+        //If the country matches mark it as already saved
+        alreadySaved = true;
+        //if its not a match keep alreadySaved as false or do nothing
+      }
+    }
+    //using bang operator to check if the country has NOT been saved already
+    if (!alreadySaved) {
+      //If the country is not in the saved list then add it using .push method
+      savedCountries.push(country);
+      //then I want to update the localStorage with the new savedCountries array
+      localStorage.setItem("savedCountries", JSON.stringify(savedCountries));
+      //then I want to notify the user that the country has been added to saved list by using alert function with a template literal to display message to user
+      alert(`${country.name.common} saved!`);
+    } else {
+      //if the country has already been saved I also want to notify the user so they will know
+      alert(`{$country.name.common} is already saved.`);
+    }
+  };
 
   return (
     <>

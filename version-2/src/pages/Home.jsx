@@ -1,4 +1,5 @@
 import CountryCard from "../components/CountryCard";
+import SavedCountries from "./SavedCountries";
 
 function Home({ countriesData }) {
   //declared a function called Home that takes "countriesData" as its prop
