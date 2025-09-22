@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import CountryCard from "../components/CountryCard";
 
 function SavedCountries() {
-  //Here I created my function for Saved countries page and created and empty form state (all fields will be blank until user types)
+  //Here I created my Saved countries page and created and empty form state (all fields will be blank until user types)
 
   const emptyFormState = {
     fullName: "",
@@ -10,6 +10,8 @@ function SavedCountries() {
     country: "",
     bio: "",
   };
+
+  // ----------- UseState --------------------
 
   //formData will hold the info the user is typing in the form
   const [formData, setFormData] = useState(emptyFormState);
@@ -19,6 +21,8 @@ function SavedCountries() {
 
   //savedCountries will hold the list of countries that user chose to save
   const [savedCountries, setSavedCountries] = useState([]);
+
+  //------------ Handle Change ------------------------
 
   //next I created handleChange function that will run each time user types or changes something on the form
 
@@ -30,7 +34,13 @@ function SavedCountries() {
     }));
   };
 
-  //the handleSubmit function will run when the form is submitted and useState setter function will take the initial state and keep everything that was already there(prev) and only update the field that changed
+  //------------- Handle Submit ------------------
+  /*
+  the handleSubmit function will run when the form is submitted and useState setter
+   function will take the initial state and keep everything that was already there
+   (prev) and only update the field that changed
+  */
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("data:", formData);
@@ -46,38 +56,38 @@ function SavedCountries() {
     setFormData(emptyFormState);
   };
 
+  //------------- USE EFFECT -------------------
+
   //I want my useEffect run once when the page loads so I will give it an empty dependency array
   useEffect(() => {
     //gets the saved countries from localStorage
     const saved = localStorage.getItem("savedCountries");
-    //Parses string into array
+    //Parses string into array and will go into setter function as a new array
     if (saved) {
       const countries = JSON.parse(saved);
-
-      //this was created so that the savedcountry objects match the CountryCard given when I first tried to embed it rendered no info inside the cards nor an image.
-      const countryList = countries.map((country) => ({
-        flag: country.flag?.png || "",
-        name: country.name?.common || "N/A",
-        capital: country.capital?.[0] || "N/A",
-        population: country.population || 0,
-        region: country.region || "N/A",
-      }));
-      //this saves the new array into the useState so it can be displayed
-      setSavedCountries(countryList);
+      setSavedCountries(countries);
     }
   }, []);
 
+  //------------- Return/Rendering ------------------------
+
   return (
     <>
-      {/* //for my actual form I created a form element and passed in my handleSubmit which onSubmit will call once the form is actually submitted
-//for each input the type is equal to the type of input the user will be doing, the name identifies the type of input needed, the placeholder is what will be in the input field to let the user know what they are typing, each input has a value prop that is connected to the formData which holds all the values of the form fields, onChange calls handleChange so typing is updated/tracked by each keystroke
+      {/* ---------- FORM --------------------
+      
+      
+//for each input the type is equal to the type of input the user will be doing,
+//  the name identifies the type of input needed, the placeholder is what will be in the input field to let the user know what they are typing, 
+// each input has a value prop that is connected to the formData which holds all the values of the form fields,
+//  onChange calls handleChange so typing is updated/tracked by each keystroke
 //lastly I gave it a submit button that will store info once form is submitted */}
 
-      {/* I want to render this message only if userInfo exists so I created an if statement*/}
+      {/* I want to render this message only if userInfo exists*/}
       {userInfo && <h2>Welcome {userInfo.fullName}</h2>}
       <div className="saved-countries-form">
         <h2>My Saved Countries</h2>
         <h2>My Profile</h2>
+        {/* //for my actual form I created a form element and passed in my handleSubmit which onSubmit will call once the form is actually submitted */}
         <form className="profile-form" onSubmit={handleSubmit}>
           <input
             type="text"
@@ -112,7 +122,7 @@ function SavedCountries() {
           <button type="submit">Submit</button>
         </form>
       </div>
-
+      {/* ---------- MAPPING AND EMBEDDING -------------- */}
       <div className="country-list">
         {/* I imported Country card given I want to reuse the same card design/component that I made for the Home page.
         This way my saved countries will display using the same layout.  */}
