@@ -86,6 +86,18 @@ function SavedCountries() {
       {userInfo && <h2>Welcome {userInfo.fullName}</h2>}
       <div className="saved-countries-form">
         <h2>My Saved Countries</h2>
+        {/* ---------- MAPPING AND EMBEDDING -------------- */}
+        <div className="country-list">
+          {/* I imported Country card given I want to reuse the same card design/component that I made for the Home page.
+        This way my saved countries will display using the same layout.  */}
+
+          {/* This will show a message if no countries are saved */}
+          {savedCountries.length === 0 && <p>No countries saved. </p>}
+          {/* Mapped over savedCountries array and embedded Country card */}
+          {savedCountries.map((country, index) => (
+            <CountryCard key={index} country={country} />
+          ))}
+        </div>
         <h2>My Profile</h2>
         {/* //for my actual form I created a form element and passed in my handleSubmit which onSubmit will call once the form is actually submitted */}
         <form className="profile-form" onSubmit={handleSubmit}>
@@ -121,18 +133,6 @@ function SavedCountries() {
           />
           <button type="submit">Submit</button>
         </form>
-      </div>
-      {/* ---------- MAPPING AND EMBEDDING -------------- */}
-      <div className="country-list">
-        {/* I imported Country card given I want to reuse the same card design/component that I made for the Home page.
-        This way my saved countries will display using the same layout.  */}
-
-        {/* This will show a message if no countries are saved */}
-        {savedCountries.length === 0 && <p>No countries saved. </p>}
-        {/* Mapped over savedCountries array and embedded Country card */}
-        {savedCountries.map((country, index) => (
-          <CountryCard key={index} country={country} />
-        ))}
       </div>
     </>
   );

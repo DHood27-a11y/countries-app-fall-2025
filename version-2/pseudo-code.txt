@@ -84,20 +84,21 @@ Add more steps as needed!
 :bar_chart: COUNTRY COUNTS DATA
 ------------------------
 WHAT data should we store & retrieve?
-KEY: "_______"
-VALUE: _______
-VALUE DATA TYPE: _______
-EXAMPLE VALUE: _______
+KEY: "__country's name_____"
+VALUE: _view count______
+VALUE DATA TYPE: number_______
+EXAMPLE VALUE: _5______
 ------------------------
 :large_orange_diamond: STORING & RETRIEVING COUNTRY COUNTS DATA
 ------------------------
 NOTE: We combine storing & retrieving country counts data into one section because they always happen together. Each time we look up a country’s view count, we also need to increase it and save the new total.
-WHEN: _______
-WHERE: _______
+WHEN: _when the user visits _____
+WHERE: __Country details page_____
 HOW:
-Step 1: _______
-Step 2: _______
-Step 3: _______
+Step 1: __useState for view count_____
+Step 2: useEffect to retrieve, add one, and_store the new number in local storage______
+Step 3: __Update the value of viewCount using setViewCount_____
+Step 4: Show the viewCount variable to the user by rendering it in the JSX
 Add more steps as needed!
 
 
