@@ -1,9 +1,32 @@
 import { useNavigate, useParams } from "react-router-dom";
 import "./CountryDetail.css";
+import { useState, useEffect } from "react";
 
 //for back button: https://stackoverflow.com/questions/52039083/handle-back-button-with-react-router
 
 function CountryDetail({ countriesData }) {
+  /* ------------- Country View Count(not finished) -------------- */
+  // created a useState to track how many times a country has been viewed and set initial state to 0 since we will be going up by 1 each time
+  const [viewCount, setViewCount] = useState(0);
+
+  //I want this function to run once when the card is rendered
+  useEffect(() => {
+    //will be getting the view counts from localStorage and if it doesnt exist we will start with an empty object. JSON.parse will convert string back into original data type
+    const savedViews = JSON.parse(localStorage.getItem("countryViews")) || {};
+
+    //I want to make sure the count for each country is current and default it to 0
+    const count = savedViews[name] || 0;
+
+    // I want to make the count increase by one which will ultimately update the state
+    setViewCount(count + 1);
+
+    //Created a new object that will have updated count for selected country
+    const updatedViews = { ...savedViews, [name]: count + 1 };
+
+    //now I want to save my updated view count to the localStorage by using .setItem and .stringify method
+    localStorage.setItem("countryViews", JSON.stringify(updatedViews));
+  }, []);
+
   //declared function called CountryDetail and gave it a parameter of countriesData given that is what contains data object
   const { countryName } = useParams();
   //this function pulls the countryName value from the API fetch URL
@@ -101,6 +124,10 @@ function CountryDetail({ countriesData }) {
               <strong>Capital:</strong>{" "}
               <span>{country.capital?.[0] || "N/A"}</span>
             </p>
+            <div className="view-count">
+              <h3>{name}</h3>
+              <p>Viewed: {viewCount} times</p>
+            </div>
           </div>
         </div>
       </div>
