@@ -44,6 +44,8 @@ function SavedCountries() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("data:", formData);
+    //this will reset the form when the page is refreshed.
+    localStorage.removeItem("profile");
 
     //Saving form data into localStorage and stringify the data object
 
