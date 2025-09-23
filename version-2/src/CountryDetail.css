@@ -24,16 +24,6 @@
   flex: 1;
 }
 
-.country-flag {
-  width: 475px;
-  height: auto;
-  max-width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  object-fit: contain;
-  display: block;
-}
-
 .save-button {
   display: inline-block;
   background: white;

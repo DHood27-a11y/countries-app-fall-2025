@@ -101,6 +101,15 @@ function CountryDetail({ countriesData }) {
             src={country.flags.png}
             alt={`Flag of ${country.name.common}`}
             className="country-flag"
+            style={{
+              width: "550px",
+              height: "auto",
+              maxWidth: "100%",
+              border: "1px solid #ddd",
+              borderRadius: "8px",
+              objectFit: "contain",
+              display: "block",
+            }}
           />
           {/* created div "country-info" for structural and styling purposes */}
           <div className="country-info">
