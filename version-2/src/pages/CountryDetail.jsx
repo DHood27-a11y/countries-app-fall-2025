@@ -11,6 +11,7 @@ function CountryDetail({ countriesData }) {
 
   //I want this function to run once when the card is rendered
   useEffect(() => {
+    localStorage.clear();
     //will be getting the view counts from localStorage and if it doesnt exist we will start with an empty object. JSON.parse will convert string back into original data type
     const savedViews = JSON.parse(localStorage.getItem("countryViews")) || {};
 
