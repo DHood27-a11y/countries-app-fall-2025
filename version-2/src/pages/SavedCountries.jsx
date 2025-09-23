@@ -50,7 +50,7 @@ function SavedCountries() {
     localStorage.setItem("profile", JSON.stringify(formData));
 
     //I want to reset the profile info after refresh
-    localStorage.clear();
+    localStorage.clear("profile");
     //then updating the userInfo state with formData so that the welcome message will show
     setUserInfo(formData);
 
