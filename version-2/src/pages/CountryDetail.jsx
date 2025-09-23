@@ -79,7 +79,7 @@ function CountryDetail({ countriesData }) {
       alert(`${country.name.common} saved!`);
     } else {
       //if the country has already been saved I also want to notify the user so they will know
-      alert(`{$country.name.common} is already saved.`);
+      alert(`${country.name.common} is already saved.`);
     }
   };
 
