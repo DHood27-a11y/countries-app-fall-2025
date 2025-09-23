@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import SavedCountries from "./pages/SavedCountries";
-import CountryDetail from "./pages/CountryDetail";
+import CountryDetail from "./pages/CountryDetail.jsx";
 import "./App.css";
 import { useState, useEffect } from "react";
 

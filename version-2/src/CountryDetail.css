@@ -25,11 +25,13 @@
 }
 
 .country-flag {
-  width: 500px;
+  width: 475px;
   height: auto;
   max-width: 100%;
   border: 1px solid #ddd;
   border-radius: 8px;
+  object-fit: contain;
+  display: block;
 }
 
 .save-button {
@@ -49,7 +51,7 @@
     align-items: center;
   }
   .country-flag {
-    width: 100%;
+    max-width: 100%;
   }
   .country-info {
     width: 100%;

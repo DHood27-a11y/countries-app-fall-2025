@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import "./CountryDetail.css";
+import "../CountryDetail.css";
 import { useState, useEffect } from "react";
 
 //for back button: https://stackoverflow.com/questions/52039083/handle-back-button-with-react-router
@@ -116,7 +116,7 @@ function CountryDetail({ countriesData }) {
             </p>
             {/* created another p tag for the region and passed in country.region from data object */}
             <p>
-              <strong>Region:</strong>
+              <strong> Region: </strong>
               {country.region}
             </p>
             {/* created a p tag and passed country.capital from data object and put ternary statement to say if the country exists display the first one and if not show the message "N/A" */}
@@ -126,7 +126,10 @@ function CountryDetail({ countriesData }) {
             </p>
             <div className="view-count">
               <h3>{name}</h3>
-              <p>Viewed: {viewCount} times</p>
+              <p>
+                <strong>Viewed: </strong>
+                {viewCount} times
+              </p>
             </div>
           </div>
         </div>
