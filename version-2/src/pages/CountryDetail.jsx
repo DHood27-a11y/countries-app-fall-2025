@@ -102,7 +102,7 @@ function CountryDetail({ countriesData }) {
             alt={`Flag of ${country.name.common}`}
             className="country-flag"
             style={{
-              width: "550px",
+              width: "650px",
               height: "auto",
               maxWidth: "100%",
               border: "1px solid #ddd",
