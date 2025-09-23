@@ -69,6 +69,14 @@ function SavedCountries() {
     }
   }, []);
 
+  useEffect(() => {
+    //this will remove the profile in localStorage only on page refresh so there's not an overload of profiles in localStorage
+    localStorage.removeItem("profile");
+    //this will reset the form state and welcome message
+    setFormData(emptyFormState);
+    setUserInfo(null);
+  }, []);
+
   //------------- Return/Rendering ------------------------
 
   return (
