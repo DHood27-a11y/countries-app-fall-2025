@@ -220,23 +220,27 @@ Add more steps as needed!
 ------------------------
 
 WHAT...
-  TYPE OF HTTP REQUEST (GET OR POST): _______
-  API ENDPOINT: _______
+  TYPE OF HTTP REQUEST (GET OR POST): _POST______
+  API ENDPOINT: _/save-one-country____
 
-  REQUEST BODY DATA TYPE (if applicable): _______
-  REQUEST BODY (if applicable): _______
+  REQUEST BODY DATA TYPE (if applicable): _object______
+  REQUEST BODY (if applicable): _{
+   country_name: "India"
+  }______
   
-  RESPONSE DATA TYPE: _______
-  RESPONSE: _______
+  RESPONSE DATA TYPE: __object_____
+  RESPONSE: _confirmation of success and updated array of objects______
 
-WHEN: _______
+WHEN: _when the user clicks save button on country details page______
 
-WHERE: _______
+WHERE: _on the countryDetail page inside the handleSave function______
 
 HOW: 
-Step 1: _______
-Step 2: _______
-Step 3: _______
+Step 1: _create function called saveOneCountry() that sends POST request to /save-one-country_and inside function include country name in request body_____
+Step 2: _use try/catch to catch errors from request______
+Step 3: update the local state variable for savedCountries_______
+Step 4: Call function inside onClick handler in save button
+Step 6: Render message to show country was saved 
 Add more steps as needed! 
 
 ------------------------
@@ -249,23 +253,24 @@ Add more steps as needed!
 NOTE: We combine storing & retrieving country counts data into one section because they always happen together. Each time we look up a country’s view count, we also need to increase it and save the new total.
 
 WHAT...
-  TYPE OF HTTP REQUEST (GET OR POST): _______
-  API ENDPOINT: _______
+  TYPE OF HTTP REQUEST (GET OR POST): _POST______
+  API ENDPOINT: _update-one-country-count______
 
-  REQUEST BODY DATA TYPE (if applicable): _______
+  REQUEST BODY DATA TYPE (if applicable): _object_with the name of the country whose count we want to update____
   REQUEST BODY (if applicable): _______
   
-  RESPONSE DATA TYPE: _______
-  RESPONSE: _______
+  RESPONSE DATA TYPE: _object______
+  RESPONSE: _will be a number_inside an object_____
   
-WHEN: _______
+WHEN: _When user visits country details page______
 
-WHERE: _______
+WHERE: In Country details.jsx and savedCountries page _______
 
 HOW: 
-Step 1: _______
-Step 2: _______
-Step 3: _______
+Step 1: __Declare function called updateOneCountryCount__and that will be sending info to API request_ and then use response.json for catching errors__
+Step 2: _Save the count data_in a state variable using useState() and set the initial state to 0 ____
+Step 3: __Call the function____
+Step 4: Call the function in useState variable _
 Add more steps as needed! 
 
 
