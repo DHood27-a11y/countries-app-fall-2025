@@ -67,6 +67,10 @@ function SavedCountries() {
       const countries = JSON.parse(saved);
       setSavedCountries(countries);
     }
+    const savedProfile = localStorage.getItem("profile");
+    if (savedProfile) {
+      setUserInfo(JSON.parse(savedProfile));
+    }
   }, []);
 
   //------------- Return/Rendering ------------------------
