@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 //for back button: https://stackoverflow.com/questions/52039083/handle-back-button-with-react-router
 
 function CountryDetail({ countriesData }) {
+  //name is not registering so instead
   /* ------------- Country View Count(not finished) -------------- */
   // created a useState to track how many times a country has been viewed and set initial state to 0 since we will be going up by 1 each time
   const [viewCount, setViewCount] = useState(0);
@@ -15,13 +16,13 @@ function CountryDetail({ countriesData }) {
     const savedViews = JSON.parse(localStorage.getItem("countryViews")) || {};
 
     //I want to make sure the count for each country is current and default it to 0
-    const count = savedViews[name] || 0;
+    const count = savedViews[country.name.common] || 0;
 
     // I want to make the count increase by one which will ultimately update the state
     setViewCount(count + 1);
 
     //Created a new object that will have updated count for selected country
-    const updatedViews = { ...savedViews, [name]: count + 1 };
+    const updatedViews = { ...savedViews, [country.name.common]: count + 1 };
 
     //now I want to save my updated view count to the localStorage by using .setItem and .stringify method
     localStorage.setItem("countryViews", JSON.stringify(updatedViews));
@@ -134,7 +135,7 @@ function CountryDetail({ countriesData }) {
               <span>{country.capital?.[0] || "N/A"}</span>
             </p>
             <div className="view-count">
-              <h3>{name}</h3>
+              <h3>{country.name.common}</h3>
               <p>
                 <strong>Viewed: </strong>
                 {viewCount} times
