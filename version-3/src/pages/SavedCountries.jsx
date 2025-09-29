@@ -111,13 +111,18 @@ function SavedCountries() {
 
   //I want my useEffect run once when the page loads so I will give it an empty dependency array
   useEffect(() => {
-    //gets the saved countries from localStorage
-    const saved = localStorage.getItem("savedCountries");
-    //Parses string into array and will go into setter function as a new array
-    if (saved) {
-      const countries = JSON.parse(saved);
-      setSavedCountries(countries);
-    }
+    const fetchSavedCountries = async () => {
+      try {
+        const response = await fetch(
+          "https://backend-answer-keys.onrender.com/get-all-saved-countries"
+        );
+        const data = await response.json();
+        setSavedCountries(data);
+      } catch (error) {
+        console.error("Error fetching saved countries", error);
+      }
+    };
+    fetchSavedCountries();
   }, []);
 
   //------------- Return/Rendering ------------------------
