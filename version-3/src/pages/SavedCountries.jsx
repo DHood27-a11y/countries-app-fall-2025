@@ -86,7 +86,7 @@ function SavedCountries({ countriesData }) {
       console.error("Couldnt store user data", error);
     }
   };
-
+  //This fetch call fetches all saved countries from backend
   const fetchSavedCountries = async () => {
     try {
       const response = await fetch(
@@ -94,12 +94,14 @@ function SavedCountries({ countriesData }) {
       );
       const data = await response.json();
       console.log("Saved countries from API:", data);
+      //had to use .map and .find method to get full country objects from countriesData
       const fullCountryObject = data.map((saved) =>
         countriesData.find(
           (country) => country.name.common === saved.country_name
         )
       );
       console.log("Full saved country object:", fullCountryObject);
+      //save full object in useState setter function
       setSavedCountries(fullCountryObject);
     } catch (error) {
       console.error("Error fetching saved countries", error);
@@ -107,19 +109,17 @@ function SavedCountries({ countriesData }) {
   };
 
   //------------- USE EFFECT -------------------
-
+  //This runs getNewestUser fetch call on page load and gave empty dependency array so that it only runs once
   useEffect(() => {
     getNewestUser();
   }, []);
 
-  //I want my useEffect run once when the page loads so I will give it an empty dependency array
+  //I want my useEffect run once when the page loads AND ONLY IF COUNTRIESDATA EXISTS and gave it an empty dependency array so it only runs once
   useEffect(() => {
     if (countriesData) {
       fetchSavedCountries();
     }
   }, []);
-
-  //the data from saved countries does NOT have all the endpoints that are needed to properly render the card
 
   //------------- Handle Submit ------------------
   /*

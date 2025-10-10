@@ -10,11 +10,15 @@ function CountryDetail({ countriesData }) {
   /* ------------- Country View Count(not finished) -------------- */
   // created a useState to track how many times a country has been viewed and set initial state to 0 since we will be going up by 1 each time
   const [viewCount, setViewCount] = useState(0);
+
+  //useParams gets dynamic url param countryName from react router
   const { countryName } = useParams();
+
+  //allows page navigation
   const navigate = useNavigate();
 
   /* ---------  handleSave ------------- */
-  //this function will save the country to localStorage when user clicks the save button
+  //Runs when user clicks save button and will store in backend instead of local storage
   const handleSave = async () => {
     try {
       await fetch("https://backend-answer-keys.onrender.com/save-one-country", {
@@ -29,6 +33,7 @@ function CountryDetail({ countriesData }) {
   };
 
   //----Fetch for updated view count---
+  //this will allow views to increment on page reload and fetch latest count from backend
   const updateViewCount = async () => {
     try {
       const response = await fetch(
@@ -52,16 +57,21 @@ function CountryDetail({ countriesData }) {
   };
 
   //---Find selected Country
+  //only get/display country if countriesData exists
   const country = countriesData.find(
     (country) => country.name.common === countryName
   );
 
   // //--USE EFFECT----////
+  //Runs updateViewCount fetch call when countryName changes
+  //the if statement makes sure it doesnt fetch before making sure the country actually exists
+  //when I initially tried to give an empty dependency array kept getting "render hooks" error. I want it to run only after making sure country exists "country" and when the URL changes to a new country (countryName)
   useEffect(() => {
     if (country) updateViewCount();
   }, [countryName, country]);
 
   //--Render message ------
+  //If there is not a country that exists display "Country not found"
   if (!country) return <p>Country not found</p>;
 
   return (
