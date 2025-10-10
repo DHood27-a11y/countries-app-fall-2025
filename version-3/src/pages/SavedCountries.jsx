@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CountryCard from "../components/CountryCard";
 
-function SavedCountries() {
+function SavedCountries({ countriesData }) {
   //Here I created my Saved countries page and created and empty form state (all fields will be blank until user types)
 
   const emptyFormState = {
@@ -52,7 +52,7 @@ function SavedCountries() {
         country: newestUserFromApi.country,
         bio: newestUserFromApi.bio,
       });
-    } catch (err) {
+    } catch (error) {
       console.error("Couldnt get new user", error);
     }
   };
@@ -61,26 +61,65 @@ function SavedCountries() {
   //the API URL as one parameter when its a GET request
   //but we need to make a POST request, we have to pass in a second parameter: an OBJECT
   const storeUserData = async () => {
-    const response = await fetch(
-      "https://backend-answer-keys.onrender.com/add-one-user",
-      {
-        method: "POST",
-        headers: {
-          //the headers is where we put metadata about our request, including the data type that we pass in the body
-          //in this case, we are saying we're passing in JSON data in the body
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.fullName,
-          country_name: formData.country,
-          email: formData.email,
-          bio: formData.bio,
-        }),
-      }
-    );
+    try {
+      const response = await fetch(
+        "https://backend-answer-keys.onrender.com/add-one-user",
+
+        {
+          method: "POST",
+          headers: {
+            //the headers is where we put metadata about our request, including the data type that we pass in the body
+            //in this case, we are saying we're passing in JSON data in the body
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.fullName,
+            country_name: formData.country,
+            email: formData.email,
+            bio: formData.bio,
+          }),
+        }
+      );
+      const data = await response.json();
+      console.log("User stored successfully", data);
+    } catch (error) {
+      console.error("Couldnt store user data", error);
+    }
   };
 
-  //we arent gonna do anything with
+  const fetchSavedCountries = async () => {
+    try {
+      const response = await fetch(
+        "https://backend-answer-keys.onrender.com/get-all-saved-countries"
+      );
+      const data = await response.json();
+      console.log("Saved countries from API:", data);
+      const fullCountryObject = data.map((saved) =>
+        countriesData.find(
+          (country) => country.name.common === saved.country_name
+        )
+      );
+      console.log("Full saved country object:", fullCountryObject);
+      setSavedCountries(fullCountryObject);
+    } catch (error) {
+      console.error("Error fetching saved countries", error);
+    }
+  };
+
+  //------------- USE EFFECT -------------------
+
+  useEffect(() => {
+    getNewestUser();
+  }, []);
+
+  //I want my useEffect run once when the page loads so I will give it an empty dependency array
+  useEffect(() => {
+    if (countriesData) {
+      fetchSavedCountries();
+    }
+  }, []);
+
+  //the data from saved countries does NOT have all the endpoints that are needed to properly render the card
 
   //------------- Handle Submit ------------------
   /*
@@ -102,28 +141,6 @@ function SavedCountries() {
     //then I want to reset the form back to empty so that when page refreshes it can be filled out again potentially by someone else
     setFormData(emptyFormState);
   };
-
-  //------------- USE EFFECT -------------------
-
-  useEffect(() => {
-    getNewestUser();
-  }, []);
-
-  //I want my useEffect run once when the page loads so I will give it an empty dependency array
-  useEffect(() => {
-    const fetchSavedCountries = async () => {
-      try {
-        const response = await fetch(
-          "https://backend-answer-keys.onrender.com/get-all-saved-countries"
-        );
-        const data = await response.json();
-        setSavedCountries(data);
-      } catch (error) {
-        console.error("Error fetching saved countries", error);
-      }
-    };
-    fetchSavedCountries();
-  }, []);
 
   //------------- Return/Rendering ------------------------
 
@@ -149,7 +166,9 @@ function SavedCountries() {
 
           {/* This will show a message if no countries are saved */}
           {savedCountries.length === 0 && <p>No countries saved. </p>}
-          {/* Mapped over savedCountries array and embedded Country card */}
+          {/* Mapped over savedCountries array and embedded Country card 
+          // right now array has JUST saved country names, we need entire object for each country rather than just names. TO DO SO: use filtering an array with  another array: map() & find() method
+          */}
           {savedCountries.map((country, index) => (
             <CountryCard key={index} country={country} />
           ))}

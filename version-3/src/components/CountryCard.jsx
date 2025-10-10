@@ -14,7 +14,7 @@ export default function CountryCard({ country }) {
         {/* Flag image for country, comes property flag in data object*/}
         <img
           src={country.flags?.png}
-          alt={country.name}
+          alt={country.name?.common}
           style={{
             borderRadius: "10px 10px 0px 0px",
             width: "100%",

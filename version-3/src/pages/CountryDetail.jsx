@@ -4,84 +4,65 @@ import { useState, useEffect } from "react";
 
 //for back button: https://stackoverflow.com/questions/52039083/handle-back-button-with-react-router
 
+/* -------  find selected country ------------*/
+
 function CountryDetail({ countriesData }) {
   /* ------------- Country View Count(not finished) -------------- */
   // created a useState to track how many times a country has been viewed and set initial state to 0 since we will be going up by 1 each time
   const [viewCount, setViewCount] = useState(0);
-
-  //I want this function to run once when the card is rendered
-  useEffect(() => {
-    //will be getting the view counts from localStorage and if it doesnt exist we will start with an empty object. JSON.parse will convert string back into original data type
-    const savedViews = JSON.parse(localStorage.getItem("countryViews")) || {};
-
-    //I want to make sure the count for each country is current and default it to 0
-    const count = savedViews[name] || 0;
-
-    // I want to make the count increase by one which will ultimately update the state
-    setViewCount(count + 1);
-
-    //Created a new object that will have updated count for selected country
-    const updatedViews = { ...savedViews, [name]: count + 1 };
-
-    //now I want to save my updated view count to the localStorage by using .setItem and .stringify method
-    localStorage.setItem("countryViews", JSON.stringify(updatedViews));
-  }, []);
-
-  //declared function called CountryDetail and gave it a parameter of countriesData given that is what contains data object
   const { countryName } = useParams();
-  //this function pulls the countryName value from the API fetch URL
   const navigate = useNavigate();
 
-  /* ------- FIRST FUNCTION: selectedCountry ------------*/
-  //this function helps the user be able to navigate to a different page
-  function selectedCountry(country) {
-    //this function just checks to make sure a country's name matches the one in the URL and returns the result
-    return country.name.common === countryName;
-  }
-  //this function uses the .find method to find the first country that matches
-  const country = countriesData.find(selectedCountry);
-
-  if (!country) return <p>Country not found</p>;
-  //the ternary statement just says if no country was found because the name didnt match show the following message, otherwise just show the country's detail page
-
-  /* --------- SECOND FUNCTION: handleSave ------------- */
+  /* ---------  handleSave ------------- */
   //this function will save the country to localStorage when user clicks the save button
-  const handleSave = () => {
-    let savedCountries;
-
+  const handleSave = async () => {
     try {
-      //the try catch method will get savedCountries from localStorage and convert string to array using .parse method and if nothing is there then it will be an empty array
-      savedCountries = JSON.parse(localStorage.getItem("savedCountries")) || [];
-    } catch {
-      savedCountries = [];
-    }
-
-    //this will track if a country is saved already or not
-    let alreadySaved = false;
-
-    /*  ---------- LOOPING AND IF ELSE STATEMENT ----------- */
-    //Looping through each saved country to check for duplicates
-    for (let i = 0; i < savedCountries.length; i++) {
-      //check if the current saved country matches the country the user wanted saved
-      if (savedCountries[i].name.common === country.name.common) {
-        //If the country matches mark it as already saved
-        alreadySaved = true;
-        //if its not a match keep alreadySaved as false or do nothing
-      }
-    }
-    //using bang operator to check if the country has NOT been saved already
-    if (!alreadySaved) {
-      //If the country is not in the saved list then add it using .push method
-      savedCountries.push(country);
-      //then I want to update the localStorage with the new savedCountries array
-      localStorage.setItem("savedCountries", JSON.stringify(savedCountries));
-      //then I want to notify the user that the country has been added to saved list by using alert function with a template literal to display message to user
-      alert(`${country.name.common} saved!`);
-    } else {
-      //if the country has already been saved I also want to notify the user so they will know
-      alert(`${country.name.common} is already saved.`);
+      await fetch("https://backend-answer-keys.onrender.com/save-one-country", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ country_name: countryName }),
+      });
+      alert(`${countryName} saved!`);
+    } catch (error) {
+      console.error("Error saving country", error);
     }
   };
+
+  //----Fetch for updated view count---
+  const updateViewCount = async () => {
+    try {
+      const response = await fetch(
+        "https://backend-answer-keys.onrender.com/update-one-country-count",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ country_name: countryName }),
+        }
+      );
+      const data = await response.json();
+      //Only update state if count has changed
+      if (data.count !== viewCount) {
+        setViewCount(data.count);
+      }
+    } catch (error) {
+      console.error("Error updating country view count", error);
+    }
+  };
+
+  //---Find selected Country
+  const country = countriesData.find(
+    (country) => country.name.common === countryName
+  );
+
+  // //--USE EFFECT----////
+  useEffect(() => {
+    if (country) updateViewCount();
+  }, [countryName, country]);
+
+  //--Render message ------
+  if (!country) return <p>Country not found</p>;
 
   return (
     <>
@@ -134,11 +115,12 @@ function CountryDetail({ countriesData }) {
               <span>{country.capital?.[0] || "N/A"}</span>
             </p>
             <div className="view-count">
-              <h3>{name}</h3>
+              <h3>{country.name.common}</h3>
               <p>
                 <strong>Viewed: </strong>
                 {viewCount} times
               </p>
+              <div className="all-country-counts"></div>
             </div>
           </div>
         </div>
