@@ -53,7 +53,7 @@ LIMIT 1;_________________________
 🔹 GET /get-all-users  
 Description: Retrieves all users from the database.  
 Your SQL command:
-______SELECT * FROM users;______________________
+______SELECT * FROM users ORDER BY user_id ASC;______________________
 
 
 🔹 POST /add-one-user  
@@ -70,7 +70,7 @@ VALUES ($1, $2, $3, $4);__________________________
 🔹 GET /get-all-saved-countries  
 Description: Retrieves a list of all saved countries.  
 Your SQL command:
-______SELECT * FROM saved_countries;______________________
+______SELECT * FROM saved_countries ORDER BY country_name ASC ;______________________
 
 
 
