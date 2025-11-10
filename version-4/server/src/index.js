@@ -34,6 +34,7 @@ app.listen(port, () => {
 Helper Functions
 ----------------------------------*/
 //1. getAllUsers()
+//will show all current users in database
 async function getAllUsers() {
   //db query() lets us query the SQL database and takes in one parameter: a SQL query
   const data = await db.query("SELECT * FROM users ORDER BY user_id ASC");
@@ -92,6 +93,7 @@ async function unsaveOneCountry(country_name) {
 //------ COUNTRY COUNTS --------//
 
 //1. updateCountryCount(country_name)
+//this will update country count number according to amount of times country is viewed
 async function updateCountryCount(country_name) {
   const data = await db.query(
     "INSERT INTO country_counts (country_name, count) VALUES ($1, 1) ON CONFLICT (country_name) DO UPDATE SET count = country_counts.count + 1 RETURNING *",
@@ -113,6 +115,7 @@ app.get("/get-all-users", async (req, res) => {
 });
 
 //2. GET get-newest-user
+//shows newest user that was added
 app.get("/get-newest-user", async (req, res) => {
   const newestUser = await getNewestUser();
   res.json(newestUser);
@@ -134,18 +137,20 @@ app.post("/add-one-user", async (req, res) => {
 //------- SAVED COUNTRIES -------- //
 
 //1. GET /get-all-saved-countries
+//shows all saved countries as data object
 app.get("/get-all-saved-countries", async (req, res) => {
   const allSavedCountries = await getAllSavedCountries(); //calls helper function
   res.json(allSavedCountries); //sends data back as JSON
 });
 //2. POST /save-one-country
+//shows message that country was saved
 app.post("/save-one-country", async (req, res) => {
   const { country_name } = req.body;
   await saveOneCountry(country_name);
   res.send(`Success! ${country_name} was saved.`);
 });
 //3. POST /unsave-one-country
-//removes one saved country from database
+//shows success message that saved country was removed from database
 
 app.post("/unsave-one-country", async (req, res) => {
   const { country_name } = req.body;
@@ -156,6 +161,7 @@ app.post("/unsave-one-country", async (req, res) => {
 //------ COUNTRY COUNTS --------//
 
 //1.) POST /update-one-country-count
+//shows updated count for one/selected country
 app.post("/update-one-country-count", async (req, res) => {
   const { country_name } = req.body;
   const updatedCount = await updateCountryCount(country_name);
