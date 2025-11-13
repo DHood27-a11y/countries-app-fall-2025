@@ -43,6 +43,7 @@ function SavedCountries({ countriesData }) {
       const data = await response.json();
       console.log(data);
       const newestUserFromApi = data[0];
+      console.log("Show new user info:", newestUserFromApi);
       //save the data in state
       setUserInfo({
         fullName: newestUserFromApi.name,
@@ -91,6 +92,8 @@ function SavedCountries({ countriesData }) {
       const data = await response.json();
       console.log("Saved countries from API:", data);
       //had to use .map and .find method to get full country objects from countriesData
+
+      //FIX ERROR ON LINE 99 (FIGURE OUT WHY COUNTRY.NAME.COMMON IS COMING UP UNDEFINED SINCE .FIND METHOD CANT READ THAT DOT NOTATION. )
       const fullCountryObject = data.map((saved) =>
         countriesData.find(
           (country) => country.name.common === saved.country_name
@@ -112,10 +115,10 @@ function SavedCountries({ countriesData }) {
 
   //I want my useEffect run once when the page loads AND ONLY IF COUNTRIESDATA EXISTS and gave it an empty dependency array so it only runs once
   useEffect(() => {
-    if (countriesData) {
+    if (countriesData && countriesData.length > 0) {
       fetchSavedCountries();
     }
-  }, []);
+  }, [countriesData]);
 
   //------------- Handle Submit ------------------
   /*

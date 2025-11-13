@@ -48,7 +48,7 @@ async function getNewestUser() {
   const data = await db.query(
     "SELECT * FROM users ORDER BY user_id DESC LIMIT 1"
   );
-  return data.rows[0];
+  return data.rows;
 }
 
 //3. addOneUser()
