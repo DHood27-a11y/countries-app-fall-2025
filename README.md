@@ -113,16 +113,16 @@ VALUES
 ## 💭 Reflections
 
 **What I learned:**
-1.) I learned how to follow/replicate the structure of a figma design
-2.) I learned how to create and implement the usage of a localData.js file
-3.) I learned how to set up react router in main.jsx so that I can create URL paths that load specific components within my app
-4.) I learned how to fork and clone a GH repo
-5.) I learned what a .gitignore file is and why its important to include in these types of projects ( Tells Git which files and folders not to track (to keep certain data private). In this instance we included it given we had config.js files that included sensitive data info from Neon database
-6.) I learned why proper file/folder structure is vital when creating a larger project/app (Keeping things organized/structured allows for you to quickly find whats needed as well as can help team/coworkers quickly navigate to what they need to work on)
-7.) I also learned the importance of committing as you go instead of at the very end, committing to GH as you go can help you track where a bug may have arisen from which can help cut down on debugging time. It can also allow for others to see your code process and the steps you took easier
-8.) I learned how to install npm packages and how they are useful to the overall structure of your code (allows you to add useful features like confetti instead of having to code out the process from scratch)
-9.) I learned how to connect data using SQL, then connecting Schema table to Neon, and then ultimately deploying to Render. 
-10.) Most importantly I learned that I don't need to be afraid to fail because without failure I wouldn't be able to even comprehend what success looks like
+ 1. I learned how to follow/replicate the structure of a figma design
+ 2. I learned how to create and implement the usage of a localData.js file
+ 3. I learned how to set up react router in main.jsx so that I can create URL paths that load specific components within my app
+ 4. I learned how to fork and clone a GH repo
+ 5. I learned what a .gitignore file is and why its important to include in these types of projects ( Tells Git which files and folders not to track (to keep certain data private). In this instance we included it given we had config.js files that included sensitive data info from Neon database
+ 6. I learned why proper file/folder structure is vital when creating a larger project/app (Keeping things organized/structured allows for you to quickly find whats needed as well as can help team/coworkers quickly navigate to what they need to work on)
+ 7. I also learned the importance of committing as you go instead of at the very end, committing to GH as you go can help you track where a bug may have arisen from which can help cut down on debugging time. It can also allow for others to see your code process and the steps you took easier
+ 8. I learned how to install npm packages and how they are useful to the overall structure of your code (allows you to add useful features like confetti instead of having to code out the process from scratch)
+ 9. I learned how to connect data using SQL, then connecting Schema table to Neon, and then ultimately deploying to Render. 
+ 10. Most importantly I learned that I don't need to be afraid to fail because without failure I wouldn't be able to even comprehend what success looks like
 
 **What I'm proud of:**  I'm proud of the fact that I was able to push past the imposter syndrome I have had since the very beginning of this assignment and the fact that I was able to set healthy boundaries with myself regarding my strengths as well as challenges. ___________
 
