@@ -22,40 +22,40 @@ Your instructor will walk you through this process with the rest of the class. P
 ## ✨ Features
 
 This is what you can do on the app: 
-- You can view a countries population, region, and capital____________
-- You can see how many times the country has been viewed_________
-- You can save multiple countries for later viewing____________
-- _On the saved countries page you can fill out the form and your info will be stored___________
+- You can view a countries population, region, and capital
+- You can see how many times the country has been viewed
+- You can save multiple countries for later viewing
+- On the saved countries page you can fill out the form and your info will be stored/ a profile will be created that saves your info as well as your saved countries
 
 ## 🛠️ Tech Stack
 
 **Frontend**
 
-- **Languages:** _HTML, CSS, JS, React_________
-- **Framework:** __React (JS)_________
-- **Deployment:** _Netlify__________
+- **Languages:**   HTML, CSS, JS, React
+- **Framework:**   React (JS)
+- **Deployment:**   Netlify
 
 **Server/API**
 
-- **Languages:** _JavaScript/Node_________
-- **Framework:** __Express_________
-- **Deployment:** _____Render_____
+- **Languages:**  JavaScript/Node
+- **Framework:**   Express
+- **Deployment:**   Render
 
 **Database**
 
-- **Languages:** ___SQL________
-- **Deployment:** ____Neon______
+- **Languages:**    SQL
+- **Deployment:**   Neon
 
 ## 🔹 API Documentation
 
 These are the API endpoints I built: 
-1. GET /get-all-users__________
-2. GET_/get-newest-user__________
-3. POST /add-one-user__________
-4. GET /get-all-saved-countries____
-5. POST /save-one-country_____
-6. POST /unsave-one-country____
-7. POST /update-one-country-count____
+1. GET /get-all-users
+2. GET_/get-newest-user
+3. POST /add-one-user
+4. GET /get-all-saved-countries
+5. POST /save-one-country
+6. POST /unsave-one-country
+7. POST /update-one-country-count
 
 Learn more about the API endpoints here: _**[https://github.com/AnnieCannons/countries-app-instructions/blob/main/version-3/api-documentation.md]**_
 
@@ -124,12 +124,14 @@ VALUES
  9. I learned how to connect data using SQL, then connecting Schema table to Neon, and then ultimately deploying to Render. 
  10. Most importantly I learned that I don't need to be afraid to fail because without failure I wouldn't be able to even comprehend what success looks like
 
-**What I'm proud of:**  I'm proud of the fact that I was able to push past the imposter syndrome I have had since the very beginning of this assignment and the fact that I was able to set healthy boundaries with myself regarding my strengths as well as challenges. ___________
+**What I'm proud of:**  I'm proud of the fact that I was able to push past the imposter syndrome I have had since the very beginning of this assignment and the fact that I was able to set healthy boundaries with myself regarding my strengths as well as challenges. 
 
-**What challenged me:** _Overthinking. Overthinking. Overthinking. __________
+**What challenged me:** _Overthinking. Overthinking. Overthinking.
 
 **Future ideas for how I'd continue building this project:** 
-1. _Implement the timezones for each country so a visual clock can be seen once the user clicks the country card________
-2. I would make the UI a lot more colorful as well as animated (for instance when the user creates a profile they would get an animation stating that their profile has been successfully created)___________
-3. I would fix the form so that its more accessible___________
+1. Implement the timezones for each country so a visual clock can be seen once the user clicks the country card
+2. I would make the UI a lot more colorful as well as animated (for instance when the user creates a profile they would get an animation stating that their profile has been successfully created)
+3. I would fix the form so that its more accessible
+4. I would add an actual log in page
+5. I would include top cultural events that take place in each country
 
