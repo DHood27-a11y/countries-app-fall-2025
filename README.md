@@ -2,7 +2,7 @@
 
 ## 📌 Project Description & Purpose
 
-This project was designed for users to be able to view different countries around the world and get basic info such as: region, population, and capital. The country cards on the home page are clickable and for whichever country is clicked, it shows the countries flag as well as other according information. On the same page if the viewer refreshes, the country cards view count goes up and the user can also save the country (saving populates a confirmation message so user is aware country is actually saved).
+This project was designed for users to be able to view different countries around the world and get basic info such as: region, population, and capital. The country cards on the home page are clickable/functional, and for whichever country is clicked it shows the countries flag as well as other according information. On the same page if the viewer refreshes, the country cards view count goes up and the user can also save the country (saving populates a confirmation message so user is aware country is actually saved). The user can also create a profile of sorts that saves their form info as well as countries that they decided to save. 
 
 ## 🚀 Live Site
 
